@@ -103,6 +103,9 @@ DELETE FROM orders_pizzas
 WHERE order_id = 2
 AND pizza_id = 2;
 
+SELECT * FROM customers_orders;
+DELETE FROM customers_orders;
+
 INSERT INTO orders_pizzas (order_id, pizza_id)
 VALUES (2, 3);
 
@@ -115,6 +118,7 @@ VALUES (3, 4);
 SELECT * FROM customers;
 SELECT * FROM orders;
 SELECT * FROM pizzas;
+SELECT * FROM customers_orders;
 SELECT * FROM orders_pizzas;
 
 SELECT * FROM customers
@@ -122,3 +126,11 @@ JOIN customers_orders ON customers.customer_id = customers_orders.order_id
 JOIN orders ON customers_orders.customer_id = orders.order_id
 JOIN orders_pizzas ON orders.order_id = orders_pizzas.pizza_id
 JOIN pizzas ON orders_pizzas.pizza_id = pizzas.pizza_id;
+
+SELECT customers.customer_name, SUM(pizzas.price) AS total_spent
+FROM customers
+JOIN customers_orders ON customers.customer_id = customers_orders.customer_id
+JOIN orders ON customers_orders.order_id = orders.order_id
+JOIN orders_pizzas ON orders.order_id = orders_pizzas.order_id
+JOIN pizzas ON orders_pizzas.order_id = pizzas.pizza_id
+GROUP BY customers.customer_name;
