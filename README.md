@@ -1,2 +1,5 @@
 # Assignment_12
- K. Cheng's Assignment #12 for Coders Campus Bootcamp
+
+Assignment #12 for Coders Campus Bootcamp
+
+This assignment was to write SQL queries to retrieve different sales transactions.
